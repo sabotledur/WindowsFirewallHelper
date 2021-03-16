@@ -3,7 +3,7 @@
 namespace WindowsFirewallHelper.Helpers
 {
     // ReSharper disable once HollowTypeName
-    internal static class PortHelper
+    public static class PortHelper
     {
         // ReSharper disable once TooManyDeclarations
 
@@ -12,11 +12,11 @@ namespace WindowsFirewallHelper.Helpers
             var portStrings = ports
                 .Distinct()
                 .OrderBy(port => port)
-                .Select((port, index) => new {PortNumber = port, GroupId = port - index})
+                .Select((port, index) => new { PortNumber = port, GroupId = port - index })
                 .GroupBy(pair => pair.GroupId)
                 .Select(
                     groups => groups.Count() >= 3
-                        ? groups.First().PortNumber + "-" + groups.Last().PortNumber
+                        ? groups.First().PortNumber + "-" + (groups.Last().PortNumber + 1)
                         : string.Join(",", groups.Select(pair => pair.PortNumber.ToString("")).ToArray())
                 )
                 .ToArray();
@@ -42,12 +42,12 @@ namespace WindowsFirewallHelper.Helpers
                             ushort.TryParse(portParts[0].Trim(), out var start) &&
                             ushort.TryParse(portParts[1].Trim(), out var end))
                         {
-                            return Enumerable.Range(start, end - start + 1).Select(p => (ushort) p);
+                            return Enumerable.Range(start, end - start).Select(p => (ushort)p);
                         }
 
                         if (portParts.Length == 1 && ushort.TryParse(port.Trim(), out var portNumber))
                         {
-                            return new[] {portNumber};
+                            return new[] { portNumber };
                         }
 
                         return new ushort[0];

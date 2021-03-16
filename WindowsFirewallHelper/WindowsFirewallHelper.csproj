@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2;net4</TargetFrameworks>
     <PackageId>WindowsFirewallHelper</PackageId>
-    <Version>1.6.3.40</Version>
+    <Version>1.6.3.43</Version>
     <Authors>Soroush Falahati</Authors>
     <Description>A class library to manage the Windows Firewall as well as adding your program to the Windows Firewall Exception list. Supporting Windows XP+.</Description>
     <PackageLicenseUrl>https://github.com/falahati/WindowsFirewallHelper/blob/master/LICENSE</PackageLicenseUrl>
@@ -43,6 +43,6 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <OutputPath>..\Release</OutputPath>
     <DocumentationFile>..\Release\WindowsFirewallHelper.xml</DocumentationFile>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
 </Project>
